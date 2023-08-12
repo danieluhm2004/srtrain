@@ -1,10 +1,24 @@
 {
-  "name": "@danieluhm2004/srtrain",
+  "name": "srtrain",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/danieluhm2004/srtrain.git",
+  "homepage": "https://github.com/danieluhm2004/srtrain#readme",
   "author": "danieluhm2004 <iam@dan.al>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danieluhm2004/srtrain/issues"
+  },
+  "keywords": [
+    "srtrain",
+    "srt",
+    "korea",
+    "sdk",
+    "api",
+    "에스알티",
+    "코레일"
+  ],
   "scripts": {
     "start": "node .",
     "start:dev": "tsc-watch --onSuccess \"node dist/index.js\"",
