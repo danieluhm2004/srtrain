@@ -33,7 +33,7 @@ export class SRT {
     this.axios = this.initAxios();
   }
 
-  private initAxios() {
+  private initAxios(): AxiosInstance {
     this.axios = wrapper(
       axios.create({
         jar: this.cookieJar,
@@ -126,7 +126,7 @@ export class SRT {
     arrivalStation: SRTStation;
     date?: Moment;
     all?: boolean;
-  }) {
+  }): Promise<SRTTrain[]> {
     const { departureStation, arrivalStation, date, all } = options;
     const actualDate = (date || moment()).format('YYYYMMDD');
     const actualTime = date?.format('HHmmss') || '000000';
@@ -164,12 +164,14 @@ export class SRT {
     return trains;
   }
 
-  async getReservationById(reservationId: string) {
+  async getReservationById(
+    reservationId: string,
+  ): Promise<SRTReservation | undefined> {
     const reservations = await this.getReservations();
     return reservations.find((r) => r.reservationId === reservationId);
   }
 
-  async getReservations() {
+  async getReservations(): Promise<SRTReservation[]> {
     if (!this.isLoggined) {
       throw new SRTError(
         SRTErrorCode.LOGIN_REQUIRED,
@@ -190,7 +192,7 @@ export class SRT {
     return reservations;
   }
 
-  parseResponse(data: any) {
+  parseResponse(data: any): any {
     if (data.resultMap?.length !== 1) {
       throw new SRTError(SRTErrorCode.UNKNOWN, '오류가 발생하였습니다.');
     }

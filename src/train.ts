@@ -48,9 +48,9 @@ export class SRTTrain {
 
   async reserve(options: {
     passengers?: SRTPassenger[];
-    seatType?: SRTPrioritySeatType;
+    prioritySeatType?: SRTPrioritySeatType;
   }) {
-    const { passengers, seatType } = options;
+    const { passengers, prioritySeatType } = options;
     if (!this.srt.isLoggined) {
       throw new SRTError(
         SRTErrorCode.LOGIN_REQUIRED,
@@ -67,7 +67,7 @@ export class SRTTrain {
 
     const actualPassengers = passengers || [SRTPassengers.Adult()];
     let isSpecialSeat = null;
-    switch (seatType) {
+    switch (prioritySeatType) {
       default:
       case SRTPrioritySeatType.GENERAL_ONLY:
         isSpecialSeat = false;
